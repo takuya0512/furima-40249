@@ -10,13 +10,13 @@
                 <mxCell id="6" value="addresses" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;" parent="1" vertex="1">
                     <mxGeometry x="560" y="400" width="160" height="160" as="geometry"/>
                 </mxCell>
-                <mxCell id="7" value="-postal_code&#10;-prefectures_id&#10;-city&#10;-block&#10;-building&#10;-phone_number&#10;-order&#10;&#10;" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="6" vertex="1">
+                <mxCell id="7" value="-postal_code&#10;-prefecture_id&#10;-city&#10;-block&#10;-building&#10;-phone_number&#10;-order&#10;&#10;" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="6" vertex="1">
                     <mxGeometry y="26" width="160" height="134" as="geometry"/>
                 </mxCell>
                 <mxCell id="10" value="items" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;" parent="1" vertex="1">
                     <mxGeometry x="560" y="80" width="160" height="180" as="geometry"/>
                 </mxCell>
-                <mxCell id="11" value="-description&#10;-category&#10;-name&#10;-price&#10;-condition_id&#10;-s&#10;-delivery_source_id&#10;-delivery_period_id&#10;-user&#10;" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="10" vertex="1">
+                <mxCell id="11" value="-description&#10;-name&#10;-price&#10;-category_id&#10;-condition_id&#10;-prefecture_id&#10;-delivery_source_id&#10;-delivery_period_id&#10;-user&#10;" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="10" vertex="1">
                     <mxGeometry y="26" width="160" height="154" as="geometry"/>
                 </mxCell>
                 <mxCell id="21" value="orders" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;" parent="1" vertex="1">
