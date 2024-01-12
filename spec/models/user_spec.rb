@@ -44,8 +44,20 @@ RSpec.describe User, type: :model do
         expect(@user.errors[:password]).to include('is too short (minimum is 6 characters)')
       end
 
-      it 'パスワードは、半角英数字混合での入力が必須であること' do
+      it '英字のみのパスワードでは登録できない' do
         @user.password = 'password'
+        @user.valid?
+        expect(@user.errors[:password]).to include('is invalid')
+      end
+      
+      it '数字のみのパスワードでは登録できない' do
+        @user.password = '123456'
+        @user.valid?
+        expect(@user.errors[:password]).to include('is invalid')
+      end
+      
+      it '全角文字を含むパスワードでは登録できない' do
+        @user.password = 'パスワード１'
         @user.valid?
         expect(@user.errors[:password]).to include('is invalid')
       end
@@ -56,11 +68,15 @@ RSpec.describe User, type: :model do
         expect(@user.errors[:password_confirmation]).to include("doesn't match Password")
       end
 
-      it 'お名前(全角)は、名字と名前がそれぞれ必須であること' do
+      it 'お名前(全角)は、名字が必須であること' do
         @user.last_name = ''
-        @user.first_name = ''
         @user.valid?
         expect(@user.errors[:last_name]).to include("can't be blank")
+      end
+
+      it 'お名前(全角)は、名前が必須であること' do
+        @user.first_name = ''
+        @user.valid?
         expect(@user.errors[:first_name]).to include("can't be blank")
       end
 
@@ -72,11 +88,15 @@ RSpec.describe User, type: :model do
         expect(@user.errors[:first_name]).to include('is invalid')
       end
 
-      it 'お名前カナ(全角)は、名字と名前がそれぞれ必須であること' do
+      it 'お名前カナ(全角)は、名字が必須であること' do
         @user.last_name_kana = ''
-        @user.first_name_kana = ''
         @user.valid?
         expect(@user.errors[:last_name_kana]).to include("can't be blank")
+      end
+
+      it 'お名前カナ(全角)は、名前が必須であること' do
+        @user.first_name_kana = ''
+        @user.valid?
         expect(@user.errors[:first_name_kana]).to include("can't be blank")
       end
 
