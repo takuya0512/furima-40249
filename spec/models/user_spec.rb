@@ -80,11 +80,15 @@ RSpec.describe User, type: :model do
         expect(@user.errors[:first_name]).to include("can't be blank")
       end
 
-      it 'お名前(全角)は、全角（漢字・ひらがな・カタカナ）での入力が必須であること' do
+      it '名字は、全角（漢字・ひらがな・カタカナ）での入力が必須であること' do
         @user.last_name = 'Smith'
-        @user.first_name = 'John'
         @user.valid?
         expect(@user.errors[:last_name]).to include('is invalid')
+      end
+
+      it 'お名前は、全角（漢字・ひらがな・カタカナ）での入力が必須であること' do
+        @user.first_name = 'John'
+        @user.valid?
         expect(@user.errors[:first_name]).to include('is invalid')
       end
 
@@ -100,11 +104,15 @@ RSpec.describe User, type: :model do
         expect(@user.errors[:first_name_kana]).to include("can't be blank")
       end
 
-      it 'お名前カナ(全角)は、全角（カタカナ）での入力が必須であること' do
+      it '名字カナは、全角（カタカナ）での入力が必須であること' do
         @user.last_name_kana = 'すみす'
-        @user.first_name_kana = 'たろう'
         @user.valid?
         expect(@user.errors[:last_name_kana]).to include('is invalid')
+      end
+
+      it 'お名前カナは、全角（カタカナ）での入力が必須であること' do
+        @user.first_name_kana = 'たろう'
+        @user.valid?
         expect(@user.errors[:first_name_kana]).to include('is invalid')
       end
 
