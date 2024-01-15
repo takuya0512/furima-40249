@@ -86,4 +86,6 @@ gem 'devise'
 
 gem 'pry-rails'
 
+gem 'activestorage'
+
 gem 'active_hash'

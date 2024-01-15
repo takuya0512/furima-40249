@@ -7,8 +7,13 @@ class Item < ApplicationRecord
   belongs_to :delivery_period
   has_one_attached :image
 
-  # app/models/product.rb
-class Product < ApplicationRecord
+
+  #空の投稿を保存できないようにする
+  validates :title, :text, presence: true
+
+  #ジャンルの選択が「---」の時は保存できないようにする
+  validates :genre_id, numericality: { other_than: 1 , message: "can't be blank"} 
+
   # 画像のバリデーション
   validates :image, presence: true
 
@@ -39,6 +44,4 @@ class Product < ApplicationRecord
 
   # 価格が半角数値のみ保存可能であることを確認する正規表現を使用
   validates_format_of :price, with: /\A[0-9]+\z/, message: "は半角数値で入力してください"
-end
-
 end

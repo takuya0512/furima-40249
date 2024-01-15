@@ -292,6 +292,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_hash
+  activestorage
   bootsnap
   capybara
   debug
