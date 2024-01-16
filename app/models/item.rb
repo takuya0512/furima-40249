@@ -1,47 +1,34 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
+
+  belongs_to :user
+
   belongs_to :category
   belongs_to :condition
   belongs_to :shipping_fee_covered
   belongs_to :prefecture
   belongs_to :delivery_period
+
   has_one_attached :image
+  
+  with_options presence: true do
+    validates :user_id
+    validates :image
+    validates :name
+    validates :description
+    validates :category_id
+    validates :condition_id
+    validates :shipping_fee_covered_id
+    validates :prefecture_id
+    validates :delivery_period_id
+    validates :price,numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
+  end
 
-
-  #空の投稿を保存できないようにする
-  validates :title, :text, presence: true
-
-  #ジャンルの選択が「---」の時は保存できないようにする
-  validates :genre_id, numericality: { other_than: 1 , message: "can't be blank"} 
-
-  # 画像のバリデーション
-  validates :image, presence: true
-
-  # 商品名のバリデーション
-  validates :name, presence: true
-
-  # 商品説明のバリデーション
-  validates :description, presence: true
-
-  # カテゴリーのバリデーション
-  validates :category, presence: true
-
-  # 商品の状態のバリデーション
-  validates :condition, presence: true
-
-  # 配送料の負担のバリデーション
-  validates :shipping_fee, presence: true
-
-  # 発送元の地域のバリデーション
-  validates :origin, presence: true
-
-  # 発送までの日数のバリデーション
-  validates :shipping_days, presence: true
-
-  # 価格のバリデーション
-  validates :price, presence: true,
-                    numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
-
-  # 価格が半角数値のみ保存可能であることを確認する正規表現を使用
-  validates_format_of :price, with: /\A[0-9]+\z/, message: "は半角数値で入力してください"
+  with_options numericality: { other_than: 0 } do
+    validates :category_id
+    validates :condition_id
+    validates :prefecture_id
+    validates :shipping_fee_covered_id
+    validates :delivery_period_id
+  end
 end
