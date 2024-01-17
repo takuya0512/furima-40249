@@ -12,23 +12,13 @@ class Item < ApplicationRecord
   has_one_attached :image
   
   with_options presence: true do
-    validates :user_id
     validates :image
     validates :name
     validates :description
-    validates :category_id
-    validates :condition_id
-    validates :shipping_fee_covered_id
-    validates :prefecture_id
-    validates :delivery_period_id
+    validates :category_id, :condition_id, :shipping_fee_covered_id, :prefecture_id, :delivery_period_id,
+              numericality: { other_than: 0, message: 'can\'t be blank' }
     validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
   end
-
-  with_options numericality: { other_than: 0, message: 'can\'t be blank' }, presence: true do
-    validates :category_id
-    validates :condition_id
-    validates :prefecture_id
-    validates :shipping_fee_covered_id
-    validates :delivery_period_id
-  end
 end
+
+
