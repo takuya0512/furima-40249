@@ -89,7 +89,6 @@ RSpec.describe Item, type: :model do
 
     context '新規登録ができる時' do
       it '適切なデータが存在すれば出品できる' do
-        # item = FactoryBot.build(:item, user: @user)
         expect(@item).to be_valid
       end
     end
