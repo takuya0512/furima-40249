@@ -7,7 +7,6 @@ RSpec.describe Item, type: :model do
 
   describe '商品出品' do
     context '新規登録ができない時' do
-      
       it '商品画像が必須であること' do
         @item.image = nil
         @item.valid?
@@ -65,7 +64,7 @@ RSpec.describe Item, type: :model do
       it '価格が整数であること' do
         @item.price = ''
         @item.valid?
-        expect(@item.errors[:price]).to include("is not a number")
+        expect(@item.errors[:price]).to include('is not a number')
       end
 
       it '価格が300未満だと出品できないこと' do
@@ -75,7 +74,7 @@ RSpec.describe Item, type: :model do
       end
 
       it '価格が10000000以上だと出品できないこと' do
-        @item.price = 10000000
+        @item.price = 10_000_000
         @item.valid?
         expect(@item.errors[:price]).to include('must be less than or equal to 9999999')
       end
