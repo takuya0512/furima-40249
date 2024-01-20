@@ -1,4 +1,4 @@
-class User < ApplicationRecord  
+class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   with_options presence: true do
     validates :nickname
-    PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
+    PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i
     validates_format_of :password, with: PASSWORD_REGEX
     validates :last_name,             format: { with: /\A[\p{Han}\p{Hiragana}\p{Katakana}]+\z/ }
     validates :first_name,            format: { with: /\A[\p{Han}\p{Hiragana}\p{Katakana}]+\z/ }

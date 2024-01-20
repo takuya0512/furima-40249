@@ -7,7 +7,6 @@ RSpec.describe User, type: :model do
 
   describe 'ユーザー新規登録' do
     context '新規登録できない場合' do
-
       it 'ニックネームが必須であること' do
         @user.nickname = ''
         @user.valid?
@@ -49,13 +48,13 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors[:password]).to include('is invalid')
       end
-      
+
       it '数字のみのパスワードでは登録できない' do
         @user.password = '123456'
         @user.valid?
         expect(@user.errors[:password]).to include('is invalid')
       end
-      
+
       it '全角文字を含むパスワードでは登録できない' do
         @user.password = 'パスワード１'
         @user.valid?
@@ -123,7 +122,7 @@ RSpec.describe User, type: :model do
       end
     end
     context '新規登録できる場合' do
-      it "適切なデータが存在すれば登録できる" do
+      it '適切なデータが存在すれば登録できる' do
         expect(@user).to be_valid
       end
     end
