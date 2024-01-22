@@ -8,24 +8,23 @@
     </h2>
     <div class="item-img-content">
       <%= image_tag @item.image ,class:"item-box-img" %>
-      <%# 商品が売れている場合は、sold outを表示しましょう %>
+
       <%# <% if @item.sold? %> 
       <div class="sold-out">
         <span>Sold Out!!</span>
       </div>
       <%# end %>  
-      <%# //商品が売れている場合は、sold outを表示しましょう %>
+
     </div>
     <div class="item-price-box">
       <span class="item-price">
         ¥ <%= @item.price %>
       </span>
       <span class="item-postage">
-        <%= "配送料負担" %>
+        <%= @item.shipping_fee_covered.name %>
       </span>
     </div>
 
-    <%# ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
     <%# if 'ユーザーがログインしている 且つ 商品が出品中である' %>
     <% if user_signed_in? %>
       <%# if '商品詳細画面にアクセスしたユーザーが出品者である' %>
@@ -34,17 +33,14 @@
             <p class='or-text'>or</p>
             <%= link_to '削除', "#", data: {turbo_method: :delete}, class:"item-destroy" %>
       <% else %>
-        <%# 商品が売れていない場合はこちらを表示しましょう %>
         <%# <% unless @item.sold? %> 
           <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%>
         <%# end %>  
-        <%# //商品が売れていない場合はこちらを表示しましょう %>
       <% end %>
     <% end %>
-    <%# //ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
 
     <div class="item-explain-box">
-      <span><%= "商品説明" %></span>
+      <span><%= @item.description %></span>
     </div>
     <table class="detail-table">
       <tbody>
@@ -109,9 +105,7 @@
       後ろの商品 ＞
     </a>
   </div>
-  <%# 詳細ページで表示されている商品のカテゴリー名を表示しましょう %>
   <a href="#" class="another-item"><%= @item.category.name %>をもっと見る</a>
-  <%# //詳細ページで表示されている商品のカテゴリー名を表示しましょう %>
 </div>
 
 <%= render "shared/footer" %>
