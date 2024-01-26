@@ -1,4 +1,4 @@
-window.addEventListener('load', () => {
+const fee = () => {
   const priceInput = document.getElementById("item-price");
   const addTaxDom = document.getElementById("add-tax-price");
   const profitDisplay = document.getElementById('profit');
@@ -11,5 +11,7 @@ window.addEventListener('load', () => {
     // 出品価格から販売手数料を引く処理
     profitDisplay.innerHTML = inputValue - addTaxDom.innerHTML;
  });
-});
+};
 
+window.addEventListener("turbo:load", fee);
+window.addEventListener("turbo:render", fee);
