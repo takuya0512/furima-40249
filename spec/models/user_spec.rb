@@ -6,6 +6,12 @@ RSpec.describe User, type: :model do
   end
 
   describe 'ユーザー新規登録' do
+    context '新規登録できる場合' do
+      it '適切なデータが存在すれば登録できる' do
+        expect(@user).to be_valid
+      end
+    end
+    
     context '新規登録できない場合' do
       it 'ニックネームが必須であること' do
         @user.nickname = ''
@@ -119,11 +125,6 @@ RSpec.describe User, type: :model do
         @user.birthdate = nil
         @user.valid?
         expect(@user.errors[:birthdate]).to include("can't be blank")
-      end
-    end
-    context '新規登録できる場合' do
-      it '適切なデータが存在すれば登録できる' do
-        expect(@user).to be_valid
       end
     end
   end
