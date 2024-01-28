@@ -11,7 +11,7 @@ RSpec.describe OrderAddress, type: :model do
         expect(@order_address).to be_valid
       end
     end
-    
+
     context '配送先情報の保存ができない場合' do
       it 'user_idが空だと保存できないこと' do
         @order_address.user_id = ''
@@ -32,9 +32,9 @@ RSpec.describe OrderAddress, type: :model do
       end
 
       it '郵便番号は「3桁ハイフン4桁」でないと保存できないこと' do
-        @order_address.postal_code = 12345678
+        @order_address.postal_code = 12_345_678
         @order_address.valid?
-        expect(@order_address.errors[:postal_code]).to include("is invalid. Include hyphen(-)")
+        expect(@order_address.errors[:postal_code]).to include('is invalid. Include hyphen(-)')
       end
 
       it '都道府県が空だと保存できないこと' do
@@ -64,28 +64,28 @@ RSpec.describe OrderAddress, type: :model do
       it '電話番号にハイフンがあると保存できないこと' do
         @order_address.phone_number = '012 - 1234 - 5678'
         @order_address.valid?
-        expect(@order_address.errors[:phone_number]).to include("is invalid")
+        expect(@order_address.errors[:phone_number]).to include('is invalid')
       end
 
       it '電話番号は半角数値のみ保存可能であること' do
         @order_address.phone_number = '０１２１２３４５６７８'
         @order_address.valid?
-        expect(@order_address.errors[:phone_number]).to include("is invalid")
+        expect(@order_address.errors[:phone_number]).to include('is invalid')
       end
 
       it '電話番号は10桁未満だと保存できないこと' do
         @order_address.phone_number = '123456789'
         @order_address.valid?
-        expect(@order_address.errors[:phone_number]).to include("is invalid")
+        expect(@order_address.errors[:phone_number]).to include('is invalid')
       end
 
       it '電話番号は11桁以上だと保存できないこと' do
         @order_address.phone_number = '111122223333'
         @order_address.valid?
-        expect(@order_address.errors[:phone_number]).to include("is invalid")
+        expect(@order_address.errors[:phone_number]).to include('is invalid')
       end
 
-      it "tokenが空では登録できないこと" do
+      it 'tokenが空では登録できないこと' do
         @order_address.token = nil
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Token can't be blank")

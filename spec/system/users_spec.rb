@@ -29,10 +29,10 @@ RSpec.describe 'ユーザー新規登録', type: :system do
       select '17', from: 'user_birthdate_3i'
 
       # 登録ボタンをクリックしてユーザーモデルのカウントが1増えることを確認
-      expect {
+      expect do
         find('input[name="commit"]').click
-        sleep 1  # クリック後にDOMが変更されるまで待機
-      }.to change { User.count }.by(1)
+        sleep 1 # クリック後にDOMが変更されるまで待機
+      end.to change { User.count }.by(1)
 
       # トップページにリダイレクトされ、ログアウトボタンが表示されていることを確認
       expect(current_path).to eq root_path
